@@ -32,4 +32,10 @@ public class CarTest {
         //then
         Assertions.assertThrows(IllegalArgumentException.class, () -> Car.withName(overLengthName));
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"", "   ", " "})
+    void test_blank_name(String blankName) {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> Car.withName(blankName));
+    }
 }

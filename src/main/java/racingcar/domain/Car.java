@@ -14,6 +14,7 @@ public class Car {
     }
 
     public static Car withName(String name) {
+        validateBlank(name);
         validateLength(name);
         return new Car(name);
     }
@@ -22,6 +23,12 @@ public class Car {
     private static void validateLength(String name) {
         if (name.length() > MAXIMUM_NAME_LENGTH) {
             throw new IllegalArgumentException(Error.NAME_LENGTH_IS_OVER.messageOf(MAXIMUM_NAME_LENGTH));
+        }
+    }
+
+    private static void validateBlank(String name) {
+        if (name.isBlank()) {
+            throw new IllegalArgumentException(Error.VALUE_IS_BLANK.message());
         }
     }
 }
