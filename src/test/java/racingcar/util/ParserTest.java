@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 public class ParserTest {
 
     @ParameterizedTest
-    @ValueSource(strings = {"1-1", "---1"})
+    @ValueSource(strings = {"1-1", "---1", "1+2", "aa", "마마"})
     @DisplayName("[예외] 숫자로만 이루어지지 않은 문자열을 변환하면 예외를 발생시킨다")
     void throw_about_not_numeric() {
         //when
@@ -20,7 +20,7 @@ public class ParserTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"-1,-1", "0,0", "1,1"})
+    @CsvSource(value = {"-1,-1", "0,0", "+1,1"})
     @DisplayName("[성공] 숫자로만 이루어진 문자열을 변환하는 데에 성공한다")
     void test_parsing_numeric(String consoleInput, int parsedInput) {
         //then

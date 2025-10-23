@@ -6,7 +6,7 @@ import racingcar.exception.Error;
 
 public class Parser {
 
-    private static final Pattern NUMERIC = Pattern.compile("^-?\\d+$");
+    private static final Pattern NUMERIC = Pattern.compile("^[+-]?\\d+$");
 
     public static int parseToInteger(String value) {
         validateType(value);
