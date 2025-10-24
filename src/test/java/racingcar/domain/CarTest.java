@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.exception.Error;
 
 public class CarTest {
 
@@ -37,6 +38,22 @@ public class CarTest {
     @ValueSource(strings = {"", "   ", " "})
     void test_blank_name(String blankName) {
         Assertions.assertThrows(IllegalArgumentException.class, () -> Car.withName(blankName));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {",", "+", "=", "&", "/", "🤔"})
+    @DisplayName("[예외] 특수 기호, 이모지를 이름으로 입력하면 예외를 발생시킨다")
+    void test_invalid_pattern(String invalidPatternName) {
+        Assertions.assertThrowsExactly(IllegalArgumentException.class,
+                () -> Car.withName(invalidPatternName),
+                Error.NAME_IS_NOT_VALID_PATTERN.message());
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"가 능", "ㄱ", "a", "넘버9"})
+    @DisplayName("[성공] 한글, 영어, 숫자, 띄어쓰기로 이루어진 이름은 검증을 통과하여 객체 생성에 성공한다")
+    void test_valid_pattern(String validPatternName) {
+        Assertions.assertDoesNotThrow(() -> Car.withName(validPatternName));
     }
 
     @Test

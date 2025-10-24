@@ -1,9 +1,12 @@
 package racingcar.domain;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import racingcar.exception.Error;
 
 public class Car {
 
+    private static final Pattern NAME_PATTERN = Pattern.compile("^[ㄱ-ㅎ가-힣a-zA-Z0-9 ]+$");
     private static final int MAXIMUM_NAME_LENGTH = 5;
     private static final int MOVABLE_POINT = 4;
 
@@ -13,6 +16,7 @@ public class Car {
     private Car(String name) {
         validateBlank(name);
         validateLength(name);
+        validatePattern(name);
         this.name = name;
     }
 
@@ -30,6 +34,14 @@ public class Car {
     private void validateBlank(String name) {
         if (name.isBlank()) {
             throw new IllegalArgumentException(Error.VALUE_IS_BLANK.message());
+        }
+    }
+
+    private void validatePattern(String name) {
+        Matcher nameMatcher = NAME_PATTERN.matcher(name);
+
+        if (!nameMatcher.matches()) {
+            throw new IllegalArgumentException(Error.NAME_IS_NOT_VALID_PATTERN.message());
         }
     }
 
