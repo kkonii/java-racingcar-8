@@ -33,6 +33,13 @@ public class Car {
         }
     }
 
+    public int move(boolean isMovable) {
+        if (isMovable) {
+            return ++distance;
+        }
+        return distance;
+    }
+
     public boolean isMovable(int number) {
         return number >= MOVABLE_POINT;
     }

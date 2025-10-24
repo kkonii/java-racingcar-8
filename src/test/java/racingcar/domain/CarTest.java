@@ -60,4 +60,18 @@ public class CarTest {
         //then
         Assertions.assertFalse(car.isMovable(movableNumber));
     }
+
+    @Test
+    @DisplayName("[성공] 자동차가 전진에 성공한다")
+    void test_moving() {
+        //given
+        Car car = Car.withName("테스트용");
+        int randomNumber = 5;
+
+        //when
+        boolean isMovable = car.isMovable(randomNumber);
+
+        //then
+        org.assertj.core.api.Assertions.assertThat(car.move(isMovable)).isEqualTo(1);
+    }
 }
