@@ -40,38 +40,24 @@ public class CarTest {
     }
 
     @Test
-    @DisplayName("[성공] 랜덤 숫자가 4이상이면 true 를 반환한다")
+    @DisplayName("[성공] 랜덤 숫자가 4 이상이면 전진한다")
     void test_judge_movable() {
         //given
-        Car car = Car.withName("움직여라");
+        Car car = Car.withName("전진하는차");
         //when
         int movableNumber = 4;
         //then
-        Assertions.assertTrue(car.isMovable(movableNumber));
+        Assertions.assertEquals(car.move(movableNumber), 1);
     }
 
     @Test
-    @DisplayName("[성공] 랜덤 숫자가 4 미만이면 false 를 반환한다")
+    @DisplayName("[성공] 랜덤 숫자가 4 미만이면 멈춘다")
     void test_judge_not_movable() {
         //given
-        Car car = Car.withName("움직여라");
+        Car car = Car.withName("멈추는차");
         //when
-        int movableNumber = 2;
+        int unmovableNumber = 2;
         //then
-        Assertions.assertFalse(car.isMovable(movableNumber));
-    }
-
-    @Test
-    @DisplayName("[성공] 자동차가 전진에 성공한다")
-    void test_moving() {
-        //given
-        Car car = Car.withName("테스트용");
-        int randomNumber = 5;
-
-        //when
-        boolean isMovable = car.isMovable(randomNumber);
-
-        //then
-        org.assertj.core.api.Assertions.assertThat(car.move(isMovable)).isEqualTo(1);
+        org.assertj.core.api.Assertions.assertThat(car.move(unmovableNumber)).isEqualTo(0);
     }
 }
