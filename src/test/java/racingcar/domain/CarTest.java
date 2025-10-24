@@ -38,4 +38,26 @@ public class CarTest {
     void test_blank_name(String blankName) {
         Assertions.assertThrows(IllegalArgumentException.class, () -> Car.withName(blankName));
     }
+
+    @Test
+    @DisplayName("[성공] 랜덤 숫자가 4이상이면 true 를 반환한다")
+    void test_judge_movable() {
+        //given
+        Car car = Car.withName("움직여라");
+        //when
+        int movableNumber = 4;
+        //then
+        Assertions.assertTrue(car.isMovable(movableNumber));
+    }
+
+    @Test
+    @DisplayName("[성공] 랜덤 숫자가 4 미만이면 false 를 반환한다")
+    void test_judge_not_movable() {
+        //given
+        Car car = Car.withName("움직여라");
+        //when
+        int movableNumber = 2;
+        //then
+        Assertions.assertFalse(car.isMovable(movableNumber));
+    }
 }

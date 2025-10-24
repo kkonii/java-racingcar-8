@@ -5,6 +5,7 @@ import racingcar.exception.Error;
 public class Car {
 
     private static final int MAXIMUM_NAME_LENGTH = 5;
+    private static final int MOVABLE_POINT = 4;
 
     private final String name;
     private int distance;
@@ -30,5 +31,9 @@ public class Car {
         if (name.isBlank()) {
             throw new IllegalArgumentException(Error.VALUE_IS_BLANK.message());
         }
+    }
+
+    public boolean isMovable(int number) {
+        return number >= MOVABLE_POINT;
     }
 }
