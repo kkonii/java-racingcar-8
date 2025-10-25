@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -9,6 +10,17 @@ public class Cars {
 
     public Cars(List<Car> cars) {
         this.cars = cars;
+    }
+
+    public List<Integer> move(NumberPickerBase numberPicker) {
+        List<Integer> distanceOfCars = new ArrayList<>();
+
+        for (Car car : cars) {
+            int randomNumber = numberPicker.pick();
+            distanceOfCars.add(car.move(randomNumber));
+        }
+
+        return distanceOfCars;
     }
 
     public int findMaxDistance() {

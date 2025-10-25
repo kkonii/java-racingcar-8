@@ -35,4 +35,18 @@ public class CarsTest {
         Cars cars = new Cars(List.of(car1, car2, car3));
         Assertions.assertThat(cars.findWinners()).containsExactly(car1, car3);
     }
+
+    @Test
+    @DisplayName("[성공] 참가한 자동차들 모두 전진 혹은 멈춤을 한 번씩 실행한다")
+    void test_race_for_one_round() {
+        //then
+        NumberPickerBase movablePicker = NumberPickerFixture.movablePicker();
+        Cars cars = new Cars(List.of(CarFixture.stopped(), CarFixture.moved()));
+
+        //when
+        List<Integer> distance = cars.move(movablePicker);
+
+        //then
+        Assertions.assertThat(distance).containsExactly(1, 2);
+    }
 }
