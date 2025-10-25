@@ -5,6 +5,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.fixture.CarFixture;
+import racingcar.fixture.NumberPickerFixture;
 
 public class CarsTest {
 
@@ -24,10 +25,11 @@ public class CarsTest {
         Car car1 = CarFixture.moved();
         Car car2 = CarFixture.stopped();
         Car car3 = CarFixture.moved();
+        NumberPickerFixture movablePicker = NumberPickerFixture.movablePicker();
 
         //when
-        car1.move(5);
-        car3.move(5);
+        car1.move(movablePicker.pick());
+        car3.move(movablePicker.pick());
 
         //then
         Cars cars = new Cars(List.of(car1, car2, car3));

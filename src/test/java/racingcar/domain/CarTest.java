@@ -7,6 +7,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.exception.Error;
 import racingcar.fixture.CarFixture;
+import racingcar.fixture.NumberPickerFixture;
 
 public class CarTest {
 
@@ -63,7 +64,8 @@ public class CarTest {
         //given
         Car car = Car.withName("전진하는차");
         //when
-        int movableNumber = 4;
+        NumberPickerFixture movablePicker = NumberPickerFixture.movablePicker();
+        int movableNumber = movablePicker.pick();
         //then
         Assertions.assertEquals(car.move(movableNumber), 1);
     }
@@ -74,7 +76,8 @@ public class CarTest {
         //given
         Car car = Car.withName("멈추는차");
         //when
-        int unmovableNumber = 2;
+        NumberPickerFixture unmovablePicker = NumberPickerFixture.unmovablePicker();
+        int unmovableNumber = unmovablePicker.pick();
         //then
         org.assertj.core.api.Assertions.assertThat(car.move(unmovableNumber)).isEqualTo(0);
     }
@@ -82,8 +85,9 @@ public class CarTest {
     @Test
     @DisplayName("[성공] 자동차가 자신이 이동한 거리와 입력받은 값 중 최대값을 찾는 데에 성공한다")
     void test_max_value() {
+        int maxDistance = 5;
         Car moved = CarFixture.moved();
         //then
-        Assertions.assertEquals(moved.compareWith(5), 5);
+        Assertions.assertEquals(moved.compareWith(maxDistance), maxDistance);
     }
 }
