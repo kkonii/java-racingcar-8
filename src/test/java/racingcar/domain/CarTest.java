@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.exception.Error;
+import racingcar.fixture.CarFixture;
 
 public class CarTest {
 
@@ -76,5 +77,13 @@ public class CarTest {
         int unmovableNumber = 2;
         //then
         org.assertj.core.api.Assertions.assertThat(car.move(unmovableNumber)).isEqualTo(0);
+    }
+
+    @Test
+    @DisplayName("[성공] 자동차가 자신이 이동한 거리와 입력받은 값 중 최대값을 찾는 데에 성공한다")
+    void test_max_value() {
+        Car moved = CarFixture.moved();
+        //then
+        Assertions.assertEquals(moved.compareWith(5), 5);
     }
 }

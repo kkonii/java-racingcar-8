@@ -55,4 +55,8 @@ public class Car {
     private boolean isMovable(int number) {
         return number >= MOVABLE_POINT;
     }
+
+    public int compareWith(int maxDistance) {
+        return Math.max(this.distance, maxDistance);
+    }
 }
