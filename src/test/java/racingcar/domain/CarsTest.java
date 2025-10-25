@@ -16,4 +16,21 @@ public class CarsTest {
         //then
         Assertions.assertThat(cars.findMaxDistance()).isEqualTo(1);
     }
+
+    @Test
+    @DisplayName("[성공] 가장 멀리 이동한 자동차들만 찾는 데에 성공한다")
+    void test_find_winners() {
+        //given
+        Car car1 = CarFixture.moved();
+        Car car2 = CarFixture.stopped();
+        Car car3 = CarFixture.moved();
+
+        //when
+        car1.move(5);
+        car3.move(5);
+
+        //then
+        Cars cars = new Cars(List.of(car1, car2, car3));
+        Assertions.assertThat(cars.findWinners()).containsExactly(car1, car3);
+    }
 }

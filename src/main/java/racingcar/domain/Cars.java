@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Cars {
 
@@ -17,5 +18,12 @@ public class Cars {
         }
 
         return maxDistance;
+    }
+
+    public List<Car> findWinners() {
+        int maxDistance = findMaxDistance();
+        return cars.stream()
+                .filter(car -> car.equalsDistance(maxDistance))
+                .collect(Collectors.toList());
     }
 }

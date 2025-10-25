@@ -59,4 +59,8 @@ public class Car {
     public int compareWith(int maxDistance) {
         return Math.max(this.distance, maxDistance);
     }
+
+    public boolean equalsDistance(int distance) {
+        return this.distance == distance;
+    }
 }
