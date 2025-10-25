@@ -1,6 +1,8 @@
 package racingcar.fixture;
 
-public class NumberPickerFixture {
+import racingcar.domain.NumberPickerBase;
+
+public class NumberPickerFixture implements NumberPickerBase {
 
     private static final int movableNumber = 5;
     private static final int unmovableNumber = 2;

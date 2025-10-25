@@ -2,12 +2,12 @@ package racingcar.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-public class RandomNumberPicker {
+public class RandomNumberPicker implements NumberPickerBase {
 
     private static final int MINIMUM = 0;
     private static final int MAXIMUM = 9;
 
-    public static int pick() {
+    public int pick() {
         return Randoms.pickNumberInRange(MINIMUM, MAXIMUM);
     }
 }

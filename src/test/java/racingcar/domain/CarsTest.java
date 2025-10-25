@@ -25,7 +25,7 @@ public class CarsTest {
         Car car1 = CarFixture.moved();
         Car car2 = CarFixture.stopped();
         Car car3 = CarFixture.moved();
-        NumberPickerFixture movablePicker = NumberPickerFixture.movablePicker();
+        NumberPickerBase movablePicker = NumberPickerFixture.movablePicker();
 
         //when
         car1.move(movablePicker.pick());
