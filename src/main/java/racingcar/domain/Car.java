@@ -63,6 +63,10 @@ public class Car {
         return this.distance == distance;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public int getDistance() {
         return distance;
     }

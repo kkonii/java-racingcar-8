@@ -3,13 +3,26 @@ package racingcar.domain;
 import java.util.List;
 import java.util.function.IntSupplier;
 import java.util.stream.Collectors;
+import racingcar.exception.Error;
 
 public class Cars {
 
     private final List<Car> cars;
 
     public Cars(List<Car> cars) {
+        validateUnique(cars);
         this.cars = cars;
+    }
+
+    private void validateUnique(List<Car> cars) {
+        long uniqueCars = cars.stream()
+                .map(Car::getName)
+                .distinct()
+                .count();
+
+        if (uniqueCars != cars.size()) {
+            throw new IllegalArgumentException(Error.CAR_NAME_IS_NOT_UNIQUE.message());
+        }
     }
 
     public void move(IntSupplier pickedNumber) {

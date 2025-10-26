@@ -11,6 +11,13 @@ public class CarFixture {
         return car;
     }
 
+    public static Car moved(String name) {
+        Car car = Car.withName(name);
+        car.move(5);
+
+        return car;
+    }
+
     public static Car stopped() {
         Car car = Car.withName("stop");
         car.move(2);

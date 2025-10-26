@@ -25,7 +25,7 @@ public class CarsTest {
         //given
         Car car1 = CarFixture.moved();
         Car car2 = CarFixture.stopped();
-        Car car3 = CarFixture.moved();
+        Car car3 = CarFixture.moved("임시이름");
         NumberPickerBase movablePicker = NumberPickerFixture.movablePicker();
 
         //when
@@ -51,5 +51,30 @@ public class CarsTest {
         Assertions.assertThat(cars.asList())
                 .extracting(Car::getDistance)
                 .containsExactly(1, 2);
+    }
+
+    @Test
+    @DisplayName("[예외] 중복되는 이름이 있는 자동차가 있을 경우, 예외를 발생시킨다")
+    void test_not_unique_cars() {
+        //given
+        Car car1 = Car.withName("모찌");
+        Car car2 = Car.withName("모찌");
+        //when
+        List<Car> cars = List.of(car1, car2);
+        //then
+        Assertions.assertThatThrownBy(() -> new Cars(cars))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("[성공] 중북되는 이름이 없으면, 성공적으로 객체를 생성한다")
+    void test_unique_cars() {
+        //given
+        Car car1 = Car.withName("dalki");
+        Car car2 = Car.withName("모찌");
+        //when
+        List<Car> cars = List.of(car1, car2);
+        //then
+        org.junit.jupiter.api.Assertions.assertDoesNotThrow(() -> new Cars(cars));
     }
 }
