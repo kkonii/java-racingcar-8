@@ -2,6 +2,7 @@ package racingcar.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 public class Cars {
@@ -12,12 +13,12 @@ public class Cars {
         this.cars = cars;
     }
 
-    public List<Integer> move(NumberPickerBase numberPicker) {
+    public List<Integer> move(Supplier<Integer> pickedNumber) {
         List<Integer> distanceOfCars = new ArrayList<>();
 
         for (Car car : cars) {
-            int randomNumber = numberPicker.pick();
-            distanceOfCars.add(car.move(randomNumber));
+            int number = pickedNumber.get();
+            distanceOfCars.add(car.move(number));
         }
 
         return distanceOfCars;

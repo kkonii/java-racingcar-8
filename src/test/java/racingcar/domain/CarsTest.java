@@ -37,14 +37,14 @@ public class CarsTest {
     }
 
     @Test
-    @DisplayName("[성공] 참가한 자동차들 모두 전진 혹은 멈춤을 한 번씩 실행한다")
+    @DisplayName("[성공] 참가한 자동차들이 전진 가능한 숫자를 받고, 한 칸 전진하는 데에 성공한다")
     void test_race_for_one_round() {
         //then
         NumberPickerBase movablePicker = NumberPickerFixture.movablePicker();
         Cars cars = new Cars(List.of(CarFixture.stopped(), CarFixture.moved()));
 
         //when
-        List<Integer> distance = cars.move(movablePicker);
+        List<Integer> distance = cars.move(movablePicker::pick);
 
         //then
         Assertions.assertThat(distance).containsExactly(1, 2);
