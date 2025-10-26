@@ -14,7 +14,7 @@ public class CarNameFilterTest {
         CarNameFilter nameFilter = new CarNameFilter();
 
         //when
-        String consoleInput = "포비,워니,준";
+        String consoleInput = "포비, 워니 ,준";
         List<String> splitNames = nameFilter.filterAll(consoleInput);
 
         //then

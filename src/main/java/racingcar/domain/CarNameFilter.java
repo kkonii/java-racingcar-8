@@ -10,6 +10,7 @@ public class CarNameFilter {
 
     public List<String> filterAll(String consoleInput) {
         return Arrays.stream(consoleInput.split(DELIMITER))
+                .map(String::strip)
                 .collect(Collectors.toList());
     }
 }
