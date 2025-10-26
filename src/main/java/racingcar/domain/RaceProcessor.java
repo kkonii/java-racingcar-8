@@ -13,6 +13,12 @@ public class RaceProcessor {
         this.randomNumberPicker = randomNumberPicker;
     }
 
+    public Cars registerCarsFrom(List<String> names) {
+        return Cars.ofUnique(names.stream()
+                .map(Car::withName)
+                .toList());
+    }
+
     public List<Car> runOneRound(Cars cars) {
         cars.move(randomNumberPicker::pick);
 
