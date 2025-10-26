@@ -45,11 +45,10 @@ public class Car {
         }
     }
 
-    public int move(int number) {
+    public void move(int number) {
         if (isMovable(number)) {
-            return ++distance;
+            distance++;
         }
-        return distance;
     }
 
     private boolean isMovable(int number) {
@@ -62,5 +61,9 @@ public class Car {
 
     public boolean equalsDistance(int distance) {
         return this.distance == distance;
+    }
+
+    public int getDistance() {
+        return distance;
     }
 }

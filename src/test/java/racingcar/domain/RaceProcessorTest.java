@@ -21,10 +21,12 @@ public class RaceProcessorTest {
 
         //when
         Cars cars = CarsFixture.withCountOf(2);
-        List<Integer> movedDistances = processor.runOneRound(cars);
+        List<Car> racedCars = processor.runOneRound(cars);
 
         //then
-        Assertions.assertThat(movedDistances).containsExactly(ONE_FORWARD, ONE_FORWARD);
+        Assertions.assertThat(racedCars)
+                .extracting(Car::getDistance)
+                .containsExactly(ONE_FORWARD, ONE_FORWARD);
     }
 
     @Test

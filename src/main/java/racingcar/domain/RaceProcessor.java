@@ -13,10 +13,10 @@ public class RaceProcessor {
         this.randomNumberPicker = randomNumberPicker;
     }
 
-    public List<Integer> runOneRound(Cars cars) {
-        List<Integer> distanceOfOneRound = cars.move(randomNumberPicker::pick);
+    public List<Car> runOneRound(Cars cars) {
+        cars.move(randomNumberPicker::pick);
 
-        return distanceOfOneRound;
+        return cars.asList();
     }
 
     public void validateTryCount(int tryCount) {

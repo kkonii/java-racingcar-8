@@ -66,8 +66,9 @@ public class CarTest {
         //when
         NumberPickerBase movablePicker = NumberPickerFixture.movablePicker();
         int movableNumber = movablePicker.pick();
+        car.move(movableNumber);
         //then
-        Assertions.assertEquals(car.move(movableNumber), 1);
+        Assertions.assertEquals(car.getDistance(), 1);
     }
 
     @Test
@@ -78,8 +79,9 @@ public class CarTest {
         //when
         NumberPickerBase unmovablePicker = NumberPickerFixture.unmovablePicker();
         int unmovableNumber = unmovablePicker.pick();
+        car.move(unmovableNumber);
         //then
-        org.assertj.core.api.Assertions.assertThat(car.move(unmovableNumber)).isEqualTo(0);
+        org.assertj.core.api.Assertions.assertThat(car.getDistance()).isEqualTo(0);
     }
 
     @Test
