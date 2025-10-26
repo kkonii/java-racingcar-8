@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 import java.util.List;
+import java.util.function.IntSupplier;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -44,7 +45,8 @@ public class CarsTest {
         Cars cars = new Cars(List.of(CarFixture.stopped(), CarFixture.moved()));
 
         //when
-        List<Integer> distance = cars.move(movablePicker::pick);
+        IntSupplier movableStrategy = () -> 4;
+        List<Integer> distance = cars.move(movableStrategy);
 
         //then
         Assertions.assertThat(distance).containsExactly(1, 2);
