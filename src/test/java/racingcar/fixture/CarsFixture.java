@@ -14,6 +14,6 @@ public class CarsFixture {
             cars.add(CarFixture.stopped());
         }
 
-        return new Cars(cars);
+        return Cars.ofUnique(cars);
     }
 }

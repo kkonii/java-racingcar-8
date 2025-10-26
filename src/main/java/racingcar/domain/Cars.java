@@ -9,9 +9,13 @@ public class Cars {
 
     private final List<Car> cars;
 
-    public Cars(List<Car> cars) {
+    private Cars(List<Car> cars) {
         validateUnique(cars);
         this.cars = cars;
+    }
+
+    public static Cars ofUnique(List<Car> cars) {
+        return new Cars(cars);
     }
 
     private void validateUnique(List<Car> cars) {

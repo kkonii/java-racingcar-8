@@ -14,7 +14,7 @@ public class CarsTest {
     @DisplayName("[성공] 자동차들의 이동 거리 중 가장 큰 값을 구하는 데에 성공한다")
     void test_max_distance() {
         //when
-        Cars cars = new Cars(List.of(CarFixture.moved(), CarFixture.stopped()));
+        Cars cars = Cars.ofUnique(List.of(CarFixture.moved(), CarFixture.stopped()));
         //then
         Assertions.assertThat(cars.findMaxDistance()).isEqualTo(1);
     }
@@ -33,7 +33,7 @@ public class CarsTest {
         car3.move(movablePicker.pick());
 
         //then
-        Cars cars = new Cars(List.of(car1, car2, car3));
+        Cars cars = Cars.ofUnique(List.of(car1, car2, car3));
         Assertions.assertThat(cars.findWinners()).containsExactly(car1, car3);
     }
 
@@ -41,7 +41,7 @@ public class CarsTest {
     @DisplayName("[성공] 참가한 자동차들이 전진 가능한 숫자를 받고, 한 칸 전진하는 데에 성공한다")
     void test_race_for_one_round() {
         //then
-        Cars cars = new Cars(List.of(CarFixture.stopped(), CarFixture.moved()));
+        Cars cars = Cars.ofUnique(List.of(CarFixture.stopped(), CarFixture.moved()));
 
         //when
         IntSupplier movableStrategy = () -> 4;
@@ -62,7 +62,7 @@ public class CarsTest {
         //when
         List<Car> cars = List.of(car1, car2);
         //then
-        Assertions.assertThatThrownBy(() -> new Cars(cars))
+        Assertions.assertThatThrownBy(() -> Cars.ofUnique(cars))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -75,6 +75,6 @@ public class CarsTest {
         //when
         List<Car> cars = List.of(car1, car2);
         //then
-        org.junit.jupiter.api.Assertions.assertDoesNotThrow(() -> new Cars(cars));
+        org.junit.jupiter.api.Assertions.assertDoesNotThrow(() -> Cars.ofUnique(cars));
     }
 }
