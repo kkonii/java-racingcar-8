@@ -23,6 +23,14 @@ public class InputValidator {
         }
     }
 
+    public static void rangeOf(String value) {
+        long parsed = Long.parseLong(value);
+
+        if (parsed < Integer.MIN_VALUE || parsed > Integer.MAX_VALUE) {
+            throw new IllegalArgumentException(Error.OUT_OF_INTEGER_RANGE.message());
+        }
+    }
+
     public static void nameFormat(String consoleInput) {
         Matcher matcher = NAME_FORMAT_PATTERN.matcher(consoleInput);
 

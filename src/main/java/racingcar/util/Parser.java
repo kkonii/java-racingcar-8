@@ -10,6 +10,7 @@ public class Parser {
 
     public static int toInteger(String value) {
         InputValidator.numericType(value);
+        InputValidator.rangeOf(value);
 
         return Integer.parseInt(value);
     }
