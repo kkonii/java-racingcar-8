@@ -3,7 +3,7 @@ package racingcar.domain;
 import java.util.List;
 import java.util.function.IntSupplier;
 import java.util.stream.Collectors;
-import racingcar.exception.Error;
+import racingcar.exception.RaceError;
 
 public class Cars {
 
@@ -25,7 +25,7 @@ public class Cars {
                 .count();
 
         if (uniqueCars != cars.size()) {
-            throw new IllegalArgumentException(Error.NAMES_ARE_NOT_UNIQUE.message());
+            throw new IllegalArgumentException(RaceError.NAMES_ARE_NOT_UNIQUE.message());
         }
     }
 

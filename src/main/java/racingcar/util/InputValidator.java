@@ -2,7 +2,7 @@ package racingcar.util;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import racingcar.exception.Error;
+import racingcar.exception.CommonError;
 
 public class InputValidator {
 
@@ -11,7 +11,7 @@ public class InputValidator {
 
     public static void blankValue(String value) {
         if (value.isBlank()) {
-            throw new IllegalArgumentException(Error.INPUT_IS_BLANK.message());
+            throw new IllegalArgumentException(CommonError.INPUT_IS_BLANK.message());
         }
     }
 
@@ -19,7 +19,7 @@ public class InputValidator {
         Matcher matcher = NUMERIC.matcher(value);
 
         if (!matcher.matches()) {
-            throw new IllegalArgumentException(Error.NOT_A_NUMBER.message());
+            throw new IllegalArgumentException(CommonError.NOT_A_NUMBER.message());
         }
     }
 
@@ -27,7 +27,7 @@ public class InputValidator {
         long parsed = Long.parseLong(value);
 
         if (parsed < Integer.MIN_VALUE || parsed > Integer.MAX_VALUE) {
-            throw new IllegalArgumentException(Error.OUT_OF_INTEGER_RANGE.message());
+            throw new IllegalArgumentException(CommonError.OUT_OF_INTEGER_RANGE.message());
         }
     }
 
@@ -35,7 +35,7 @@ public class InputValidator {
         Matcher matcher = NAME_FORMAT_PATTERN.matcher(consoleInput);
 
         if (!matcher.matches()) {
-            throw new IllegalArgumentException(Error.NAME_FORMAT_IS_NOT_VALID_PATTERN.message());
+            throw new IllegalArgumentException(CommonError.NAME_FORMAT_IS_NOT_VALID_PATTERN.message());
         }
     }
 }

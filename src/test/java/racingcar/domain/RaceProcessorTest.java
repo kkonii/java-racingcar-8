@@ -6,7 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.domain.strategy.NumberPickerBase;
 import racingcar.dto.CarDto;
-import racingcar.exception.Error;
+import racingcar.exception.RaceError;
 import racingcar.fixture.CarsFixture;
 import racingcar.fixture.NumberPickerFixture;
 
@@ -42,6 +42,6 @@ public class RaceProcessorTest {
         //then
         Assertions.assertThatThrownBy(() -> processor.validateRunnable(tryCount))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(Error.TRY_COUNT_IS_NOT_RUNNABLE.message());
+                .hasMessage(RaceError.TRY_COUNT_IS_NOT_RUNNABLE.message());
     }
 }

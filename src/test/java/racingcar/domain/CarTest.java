@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.domain.strategy.NumberPickerBase;
-import racingcar.exception.Error;
+import racingcar.exception.RaceError;
 import racingcar.fixture.CarFixture;
 import racingcar.fixture.NumberPickerFixture;
 
@@ -49,7 +49,7 @@ public class CarTest {
     void test_invalid_pattern(String invalidPatternName) {
         Assertions.assertThrowsExactly(IllegalArgumentException.class,
                 () -> Car.withName(invalidPatternName),
-                Error.NAME_IS_NOT_VALID_PATTERN.message());
+                RaceError.NAME_IS_NOT_VALID_PATTERN.message());
     }
 
     @ParameterizedTest

@@ -2,7 +2,7 @@ package racingcar.domain;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import racingcar.exception.Error;
+import racingcar.exception.RaceError;
 
 public class Car {
 
@@ -26,13 +26,13 @@ public class Car {
 
     private void validateLength(String name) {
         if (name.length() > MAXIMUM_NAME_LENGTH) {
-            throw new IllegalArgumentException(Error.NAME_LENGTH_IS_OVER.messageOf(MAXIMUM_NAME_LENGTH));
+            throw new IllegalArgumentException(RaceError.NAME_LENGTH_IS_OVER.messageOf(MAXIMUM_NAME_LENGTH));
         }
     }
 
     private void validateBlank(String name) {
         if (name.isBlank()) {
-            throw new IllegalArgumentException(Error.NAME_IS_BLANK.message());
+            throw new IllegalArgumentException(RaceError.NAME_IS_BLANK.message());
         }
     }
 
@@ -40,7 +40,7 @@ public class Car {
         Matcher nameMatcher = NAME_PATTERN.matcher(name);
 
         if (!nameMatcher.matches()) {
-            throw new IllegalArgumentException(Error.NAME_IS_NOT_VALID_PATTERN.message());
+            throw new IllegalArgumentException(RaceError.NAME_IS_NOT_VALID_PATTERN.message());
         }
     }
 

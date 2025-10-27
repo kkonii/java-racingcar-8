@@ -4,7 +4,7 @@ import java.util.List;
 import racingcar.domain.strategy.NumberPickerBase;
 import racingcar.dto.CarDto;
 import racingcar.dto.mapper.DtoMapper;
-import racingcar.exception.Error;
+import racingcar.exception.RaceError;
 
 public class RaceProcessor {
 
@@ -24,7 +24,7 @@ public class RaceProcessor {
 
     public void validateRunnable(int tryCount) {
         if (tryCount < RUNNABLE_POINT) {
-            throw new IllegalArgumentException(Error.TRY_COUNT_IS_NOT_RUNNABLE.message());
+            throw new IllegalArgumentException(RaceError.TRY_COUNT_IS_NOT_RUNNABLE.message());
         }
     }
 
