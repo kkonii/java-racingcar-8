@@ -6,7 +6,7 @@ import racingcar.exception.Error;
 
 public class InputValidator {
 
-    private static final Pattern NAME_FORMAT_PATTERN = Pattern.compile("^\\w+(,+\\w+)*$");
+    private static final Pattern NAME_FORMAT_PATTERN = Pattern.compile("^[\\w가-힣]+(,+[\\w가-힣]+)*$");
     private static final Pattern NUMERIC = Pattern.compile("^[+-]?\\d+$");
 
     public static void blankValue(String value) {
