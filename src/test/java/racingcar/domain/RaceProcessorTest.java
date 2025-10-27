@@ -4,6 +4,7 @@ import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingcar.dto.CarDto;
 import racingcar.exception.Error;
 import racingcar.fixture.CarsFixture;
 import racingcar.fixture.NumberPickerFixture;
@@ -21,11 +22,11 @@ public class RaceProcessorTest {
 
         //when
         Cars cars = CarsFixture.withCountOf(2);
-        List<Car> racedCars = processor.runOneRound(cars);
+        List<CarDto> racedCars = processor.runOneRound(cars);
 
         //then
         Assertions.assertThat(racedCars)
-                .extracting(Car::getDistance)
+                .extracting(CarDto::distance)
                 .containsExactly(ONE_FORWARD, ONE_FORWARD);
     }
 

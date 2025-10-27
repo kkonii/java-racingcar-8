@@ -1,20 +1,23 @@
 package racingcar.controller;
 
 import java.util.List;
-import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import racingcar.domain.RaceProcessor;
+import racingcar.dto.CarDto;
 import racingcar.util.Parser;
 import racingcar.view.InputView;
+import racingcar.view.OutputView;
 
 public class Race {
 
     private final RaceProcessor raceProcessor;
     private final InputView inputView;
+    private final OutputView outputView;
 
-    public Race(RaceProcessor raceProcessor, InputView inputView) {
+    public Race(RaceProcessor raceProcessor, InputView inputView, OutputView outputView) {
         this.raceProcessor = raceProcessor;
         this.inputView = inputView;
+        this.outputView = outputView;
     }
 
     public void run() {
@@ -40,7 +43,8 @@ public class Race {
 
     private void proceedRace(int tryCount, Cars cars) {
         for (int i = 0; i < tryCount; i++) {
-            List<Car> racedCars = raceProcessor.runOneRound(cars);
+            List<CarDto> carsDto = raceProcessor.runOneRound(cars);
+            outputView.printResultOf(carsDto);
         }
     }
 }

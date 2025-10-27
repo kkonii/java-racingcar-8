@@ -1,6 +1,8 @@
 package racingcar.domain;
 
 import java.util.List;
+import racingcar.dto.CarDto;
+import racingcar.dto.mapper.DtoMapper;
 import racingcar.exception.Error;
 
 public class RaceProcessor {
@@ -19,10 +21,13 @@ public class RaceProcessor {
                 .toList());
     }
 
-    public List<Car> runOneRound(Cars cars) {
+    public List<CarDto> runOneRound(Cars cars) {
         cars.move(randomNumberPicker::pick);
 
-        return cars.asList();
+        return cars.asList()
+                .stream()
+                .map(DtoMapper::of)
+                .toList();
     }
 
     public void validateTryCount(int tryCount) {
