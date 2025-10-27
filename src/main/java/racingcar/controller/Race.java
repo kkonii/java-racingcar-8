@@ -1,6 +1,7 @@
 package racingcar.controller;
 
 import java.util.List;
+import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import racingcar.domain.RaceProcessor;
 import racingcar.util.Parser;
@@ -19,6 +20,8 @@ public class Race {
     public void run() {
         Cars cars = readyCars();
         int tryCount = inputTryCount();
+
+        proceedRace(tryCount, cars);
     }
 
     private Cars readyCars() {
@@ -33,5 +36,11 @@ public class Race {
         raceProcessor.validateTryCount(tryCount);
 
         return tryCount;
+    }
+
+    private void proceedRace(int tryCount, Cars cars) {
+        for (int i = 0; i < tryCount; i++) {
+            List<Car> racedCars = raceProcessor.runOneRound(cars);
+        }
     }
 }
