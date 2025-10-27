@@ -49,6 +49,7 @@ public class Race {
     }
 
     private void proceedRace(int tryCount, Cars cars) {
+        outputView.printHeader();
         for (int i = 0; i < tryCount; i++) {
             List<CarDto> carsDto = raceProcessor.runOneRound(cars);
             outputView.printResultOf(carsDto);
