@@ -32,7 +32,7 @@ public class Car {
 
     private void validateBlank(String name) {
         if (name.isBlank()) {
-            throw new IllegalArgumentException(Error.VALUE_IS_BLANK.message());
+            throw new IllegalArgumentException(Error.NAME_IS_BLANK.message());
         }
     }
 
