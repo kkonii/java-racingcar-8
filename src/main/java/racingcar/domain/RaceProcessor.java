@@ -35,4 +35,10 @@ public class RaceProcessor {
             throw new IllegalArgumentException(Error.TRY_COUNT_MUST_BE_POSITIVE.message());
         }
     }
+
+    public List<CarDto> sortWinners(Cars cars) {
+        return cars.findWinners()
+                .stream().map(DtoMapper::of)
+                .toList();
+    }
 }

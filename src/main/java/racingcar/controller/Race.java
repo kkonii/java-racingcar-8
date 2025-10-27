@@ -25,6 +25,7 @@ public class Race {
         int tryCount = inputTryCount();
 
         proceedRace(tryCount, cars);
+        printWinner(cars);
     }
 
     private Cars readyCars() {
@@ -46,5 +47,10 @@ public class Race {
             List<CarDto> carsDto = raceProcessor.runOneRound(cars);
             outputView.printResultOf(carsDto);
         }
+    }
+
+    private void printWinner(Cars cars) {
+        List<CarDto> winners = raceProcessor.sortWinners(cars);
+        outputView.printNamesOf(winners);
     }
 }
