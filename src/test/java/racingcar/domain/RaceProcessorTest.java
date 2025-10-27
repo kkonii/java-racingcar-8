@@ -4,6 +4,7 @@ import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingcar.domain.strategy.NumberPickerBase;
 import racingcar.dto.CarDto;
 import racingcar.exception.Error;
 import racingcar.fixture.CarsFixture;
@@ -31,7 +32,7 @@ public class RaceProcessorTest {
     }
 
     @Test
-    @DisplayName("[예외] 1미만의 시도 횟수를 입력받을 경우, 예외를 발생시킨다")
+    @DisplayName("[예외] 1 미만의 시도 횟수를 입력받을 경우, 예외를 발생시킨다")
     void test_throw_invalid_try_count() {
         //given
         NumberPickerBase picker = NumberPickerFixture.movablePicker();
@@ -39,8 +40,8 @@ public class RaceProcessorTest {
         //when
         int tryCount = 0;
         //then
-        Assertions.assertThatThrownBy(() -> processor.validateTryCount(tryCount))
+        Assertions.assertThatThrownBy(() -> processor.validateRunnable(tryCount))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(Error.TRY_COUNT_MUST_BE_POSITIVE.message());
+                .hasMessage(Error.TRY_COUNT_IS_NOT_RUNNABLE.message());
     }
 }

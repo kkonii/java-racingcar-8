@@ -24,7 +24,6 @@ public class Car {
         return new Car(name);
     }
 
-
     private void validateLength(String name) {
         if (name.length() > MAXIMUM_NAME_LENGTH) {
             throw new IllegalArgumentException(Error.NAME_LENGTH_IS_OVER.messageOf(MAXIMUM_NAME_LENGTH));

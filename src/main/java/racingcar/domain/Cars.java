@@ -10,7 +10,7 @@ public class Cars {
     private final List<Car> cars;
 
     private Cars(List<Car> cars) {
-        validateUnique(cars);
+        validateUniqueName(cars);
         this.cars = cars;
     }
 
@@ -18,14 +18,14 @@ public class Cars {
         return new Cars(cars);
     }
 
-    private void validateUnique(List<Car> cars) {
+    private void validateUniqueName(List<Car> cars) {
         long uniqueCars = cars.stream()
                 .map(Car::getName)
                 .distinct()
                 .count();
 
         if (uniqueCars != cars.size()) {
-            throw new IllegalArgumentException(Error.CAR_NAME_IS_NOT_UNIQUE.message());
+            throw new IllegalArgumentException(Error.NAMES_ARE_NOT_UNIQUE.message());
         }
     }
 
@@ -36,21 +36,21 @@ public class Cars {
         }
     }
 
-    public int findMaxDistance() {
-        int maxDistance = 0;
-        for (Car car : cars) {
-            maxDistance = car.compareWith(maxDistance);
-        }
-
-        return maxDistance;
-    }
-
     public List<Car> findWinners() {
         int maxDistance = findMaxDistance();
 
         return cars.stream()
                 .filter(car -> car.equalsDistance(maxDistance))
                 .collect(Collectors.toList());
+    }
+
+    private int findMaxDistance() {
+        int maxDistance = 0;
+        for (Car car : cars) {
+            maxDistance = car.compareWith(maxDistance);
+        }
+
+        return maxDistance;
     }
 
     public List<Car> asList() {

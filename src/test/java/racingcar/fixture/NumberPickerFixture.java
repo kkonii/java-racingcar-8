@@ -1,6 +1,6 @@
 package racingcar.fixture;
 
-import racingcar.domain.NumberPickerBase;
+import racingcar.domain.strategy.NumberPickerBase;
 
 public class NumberPickerFixture implements NumberPickerBase {
 

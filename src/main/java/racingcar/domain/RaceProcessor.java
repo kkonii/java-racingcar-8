@@ -1,13 +1,14 @@
 package racingcar.domain;
 
 import java.util.List;
+import racingcar.domain.strategy.NumberPickerBase;
 import racingcar.dto.CarDto;
 import racingcar.dto.mapper.DtoMapper;
 import racingcar.exception.Error;
 
 public class RaceProcessor {
 
-    private static final int TRY_ABLE_POINT = 1;
+    private static final int RUNNABLE_POINT = 1;
 
     private final NumberPickerBase randomNumberPicker;
 
@@ -21,6 +22,12 @@ public class RaceProcessor {
                 .toList());
     }
 
+    public void validateRunnable(int tryCount) {
+        if (tryCount < RUNNABLE_POINT) {
+            throw new IllegalArgumentException(Error.TRY_COUNT_IS_NOT_RUNNABLE.message());
+        }
+    }
+
     public List<CarDto> runOneRound(Cars cars) {
         cars.move(randomNumberPicker::pick);
 
@@ -28,12 +35,6 @@ public class RaceProcessor {
                 .stream()
                 .map(DtoMapper::of)
                 .toList();
-    }
-
-    public void validateTryCount(int tryCount) {
-        if (tryCount < TRY_ABLE_POINT) {
-            throw new IllegalArgumentException(Error.TRY_COUNT_MUST_BE_POSITIVE.message());
-        }
     }
 
     public List<CarDto> sortWinners(Cars cars) {

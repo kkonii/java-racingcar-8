@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import racingcar.domain.strategy.NumberPickerBase;
 
 public class RandomNumberPicker implements NumberPickerBase {
 

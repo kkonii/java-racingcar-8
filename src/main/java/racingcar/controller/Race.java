@@ -37,7 +37,7 @@ public class Race {
 
     private int inputTryCount() {
         int tryCount = Parser.toInteger(inputView.getCountInput());
-        raceProcessor.validateTryCount(tryCount);
+        raceProcessor.validateRunnable(tryCount);
 
         return tryCount;
     }
